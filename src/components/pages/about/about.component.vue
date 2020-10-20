@@ -1,9 +1,9 @@
 <template>
-  <div id="about-section" class="about">
-    <section class="hero is-fullheight-with-navbar">
+  <div class="about">
+    <section class="hero  is-fullheight-with-navbar">
       <div class="container ees-about-me">
         <p class="title about-title">
-          FullStack Software Development
+          {{ eesAboutTitle }}
         </p>
       </div>
     </section>
@@ -12,7 +12,12 @@
 
 <script>
   export default {
-    name: 'About'
+    name: 'About',
+    data() {
+      return {
+        eesAboutTitle: 'FullStack Software Development'
+      };
+    },
   }
 </script>
 

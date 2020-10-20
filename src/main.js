@@ -2,15 +2,19 @@ import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 
-// Third party libraries TODO: improve links
 import './../node_modules/bulma/css/bulma.css';
-
-// Components
-import About from './components/About';
-import Experience from './components/Experience';
-import Skills from './components/Skills';
+import VueMaterial from 'vue-material';
+import 'vue-material/dist/vue-material.min.css';
+import 'vue-material/dist/theme/default.css';
+import { store } from './store/index';
 
 Vue.use(VueRouter);
+Vue.use(VueMaterial);
+
+// Components
+import About from './components/pages/about/about.component';
+import Experience from './components/pages/experience/experience.component';
+import Skills from './components/pages/skills/skills.component';
 
 // App routes
 const routes = [
@@ -28,5 +32,6 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   render: h => h(App),
-  mode: 'history'
+  mode: 'history',
+  store
 }).$mount('#app');

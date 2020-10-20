@@ -12,8 +12,8 @@
   </div>
 </template>
 <script>
-  import Navbar from './components/Navbar';
-  import Home from './components/Home';
+  import Navbar from './components/partials/navbar.component';
+  import Home from './components/pages/home/home.component';
 
   const DEFAULT_TRANSITION = 'fade';
 
@@ -45,7 +45,7 @@ export default {
       const el = this.$el.getElementsByClassName('view')[0];
 
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.scrollIntoView({ behavior: 'smooth' });
       }
     },
     beforeLeave(element) {

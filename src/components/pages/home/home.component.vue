@@ -30,13 +30,15 @@
     data: function() {
       return {
         showTitle: false,
-        showScrollButton: false
+        showScrollButton: false,
+        appTitle: 'Ernesto Silva',
+        appSubtitle: 'Fullstack Software development'
       }
     },
     mounted() {
       this.showTitle = true;
 
-      setTimeout(() => this.showScrollButton = true, 2000);
+      setTimeout(() => this.showScrollButton = true, 1000);
     },
     methods: {
       scrollToMain() {
