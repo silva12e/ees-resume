@@ -1,131 +1,128 @@
 <template>
-  <div class="ees-resume-navbar">
-    <nav
-      class="navbar is-primary"
-      role="navigation"
-      aria-label="main navigation">
-      <div
-        class="navbar-brand"
-        v-on:click="toggleNavbar()">
-        <h1 class="navbar-item">
-          EES Resume
-        </h1>
-        <a v-bind:class="{ 'is-active' : isNavbarOpen }"
-           role="button"
-           class="navbar-burger burger"
-           aria-label="menu"
-           aria-expanded="false"
-           data-target="navbartarget">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-      <div  class="navbar-menu" v-bind:class="{ 'is-active' : isNavbarOpen }">
-        <div
-          class="navbar-start"
-          v-bind:key="link.route"
-          v-for="link in navigationLinks">
-          <router-link
-            class="navbar-item"
-            v-bind:class="{'is-active': link.isActive }"
-            v-bind:to="link.route">
-            <span v-on:click="updateNavigation(link)">{{ link.page }}</span>
-          </router-link>
-        </div>
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons is-rounded">
-              <span class=" ees-button-social  is-primary">
-                <img src="../../assets/icons/icons8-github-48.png"/>
-              </span>
-              <span class="ees-button-social is-primary">
-                <img src="../../assets/icons/icons8-linkedin-circled-48.png"/>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-  </div>
+  <nav v-bind:class="{ 'closed': !isNavbarActive  }"
+       class="float-nav"
+       v-on:click="toggle()">
+    <ul class="navbar-items">
+      <li class="navbar-item">
+        <a class="link" href="#">About me</a>
+      </li>
+      <li>
+        <a class="link" href="#">Experience</a>
+      </li>
+      <li>
+        <a class="link" href="#">Projects</a>
+      </li>
+      <li>
+        <a class="link" href="#">Contact Information</a>
+      </li>
+    </ul>
+    <div class="toggle  open">
+      <a v-bind:class="{ 'is-active': isNavbarActive }"
+         role="button"
+         class="navbar-burger"
+         aria-label="menu"
+         aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  </nav>
 </template>
 <script>
-  import { mapState } from 'vuex'
-
   export default {
     name: 'Navbar',
     data: function() {
       return {
-        isNavbarOpen: false,
-        navigationLinks: [
-          {
-            id: 0,
-            route: '/',
-            page: 'about me',
-            isActive: this.isLinkActive('/')
-          },
-          {
-            id: 1,
-            route: '/projects',
-            page: 'projects',
-            isActive: this.isLinkActive('/projects')
-          },
-          {
-            id: 2,
-            route: '/skills',
-            page: 'skills',
-            isActive: this.isLinkActive('/skills')
-          },
-        ]
+        isNavbarActive: false
       }
     },
-    computed: mapState({
-      links: state => state.navbarLinks
-    }),
     methods: {
-      toggleNavbar() {
-        this.isNavbarOpen = !this.isNavbarOpen;
-      },
-      updateNavigation(link) {
-       this.navigationLinks.forEach((navLink) =>
-         navLink.isActive = link === navLink.route);
-      },
-      isLinkActive(url) {
-        return this.$route.fullPath === url;
+      toggle() {
+        this.isNavbarActive = !this.isNavbarActive;
       }
     },
     mounted() {}
   }
 </script>
 <style scoped>
-  .ees-button-social {
-    padding: 0;
+  .float-nav {
+    border-radius: 20px;
+    position: fixed;
+    z-index: 1;
+    bottom: 1.375em;
+    right: 1.375em;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    padding: 1.375em;
+    text-align: right;
+    background: #000;
+    border: 5px solid #000;
+    box-shadow:
+        0 1px 2px rgba(0,0,0,0.2),
+        0 4px 10px rgba(0,0,0,0.15);
+    transition: all 300ms cubic-bezier(.6,-0.3,.3,1.3);
   }
-  .navbar-start {
-    margin: 0;
+  .float-nav.closed {
+    width: 0;
+    height: 0;
+    border: 5px solid #fff;
+    border-radius: 50%;
   }
-  .navbar-item > a {
+
+  .float-nav a {
+    display: inline-block;
+    color: #fff;
+  }
+
+  .float-nav > a {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+
+  .float-nav .toggle {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 1.375em;
+    height: 1.375em;
+    font-size: 200%;
+    line-height: 1.375em;
+    font-weight: 300;
+    text-align: center;
+    transition: all 300ms;
+  }
+
+  .float-nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    opacity: 1;
+    transition: all 300ms;
+  }
+
+  .float-nav.closed ul {
+    opacity: 0;
+  }
+
+  .float-nav li {
+    padding: 0.25em 0;
+    margin-bottom: 0;
+    transition: all 600ms;
+    color: red;
+  }
+
+  .float-nav.closed li {
+    margin-bottom: 1.375em;
+  }
+
+  .navbar-burger span {
     color: #FFF;
   }
 
-  .navbar-item:hover{
-    animation: navbarGenie .2s ease-in;
-    text-decoration: none;
-    color: black !important;
-  }
-
-  @keyframes navbarGenie {
-    0% {
-      display: none;
-      opacity: 0;
-    }
-    1% {
-      display: block;
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  .link {
+    margin: 12px;
   }
 </style>

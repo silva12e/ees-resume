@@ -7,9 +7,11 @@ import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
 import { store } from './store/index';
+import VueTyperPlugin from 'vue-typer'
 
 Vue.use(VueRouter);
 Vue.use(VueMaterial);
+Vue.use(VueTyperPlugin);
 
 // Components
 import About from './components/pages/about/about.component';

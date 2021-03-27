@@ -1,13 +1,10 @@
 <template>
   <div id="app">
-    <home @scrollToMain="scrollToMain"></home>
-    <Navbar></Navbar>
-    <transition
-      :name="transitionName"
-      mode="out-in"
-      @beforeLeave="beforeLeave"
-      @enter="enter">
-      <router-view id="main" class="view"></router-view>
+    <home @showNavbar="showNavbar = true"
+          @scrollToMain="scrollToMain">
+    </home>
+    <transition name="bounce">
+      <Navbar v-if="showNavbar"></Navbar>
     </transition>
   </div>
 </template>
@@ -24,6 +21,7 @@ export default {
     return {
       prevHeight: 0,
       transitionName: DEFAULT_TRANSITION,
+      showNavbar: false
     };
   },
   created() {
@@ -84,5 +82,23 @@ export default {
   .slide-right-enter {
     opacity: 0;
     transform: translate(-2em, 0);
+  }
+
+  .bounce-enter-active {
+    animation: bounce-in 300ms;
+  }
+  .bounce-leave-active {
+    animation: bounce-in 300ms reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 </style>
