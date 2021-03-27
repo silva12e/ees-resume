@@ -14,17 +14,17 @@
         </h2>
       </div>
       <div class="home-social">
-        <transition name="bounce">
-          <div v-show="showSocialMediaIcons" class="ees-home-social-container">
-            <div class="ees-home-social-icons">
-              <img class="ees-home-social-icon" src="../../../assets/icons/instagram-rounded.png"/>
-              <img class="ees-home-social-icon" src="../../../assets/icons/linked-rounded.png"/>
-              <img class="ees-home-social-icon" src="../../../assets/icons/GitHub-Mark-120px-plus.png"/>
-            </div>
-          </div>
+        <transition name="fade">
+          <ul v-show="showSocialMediaIcons"
+              class="ees-home-social-container">
+            <li><a class="icon-link" href="#"><i class="fab fa-linkedin-in icon linkedin"></i></a></li>
+            <li><a class="icon-link" href="#"><i class="fab fa-github icon github"></i></a></li>
+            <li><a class="icon-link" href="#"><i class="fab fa-instagram instagram icon"></i></a></li>
+          </ul>
         </transition>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -90,20 +90,87 @@
 
   .ees-home-title,
   .ees-home-subtitle {
-    color: #fff;
+    color: #3b5999 !important;
   }
 
   .ees-home-subtitle {
     margin-bottom: 0;
   }
 
-  .ees-home-social-icon {
-    height: 45px;
-    width: 45px;
+  .icon:hover {
+    text-decoration: none;
   }
 
-  .ees-home-social-icon {
-    margin: 4px;
+  .ees-home-social-container {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .icon-link {
+    text-decoration: none !important;
+  }
+  .ees-home-social-container li {
+    list-style: none;
+  }
+
+  .ees-home-social-container li a {
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 80px;
+    font-size: 35px;
+    margin: 0 10px;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #fff;
+    z-index: 1;
+  }
+
+  .ees-home-social-container li a .icon {
+    position: relative;
+    color: #262626;
+    transition: .5s;
+    z-index: 3;
+    text-decoration: none;
+  }
+
+  .ees-home-social-container li a:hover .icon {
+    color: #fff;
+    transform: rotateY(360deg);
+  }
+
+  .ees-home-social-container li a:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f00;
+    transition: .5s;
+    z-index: 2;
+  }
+
+  .ees-home-social-container li a:hover:before {
+    top: 0;
+  }
+
+  .ees-home-social-container li:nth-child(1) a:before{
+    background: #3b5999;
+  }
+
+  .ees-home-social-container li:nth-child(2) a:before{
+    background: #BE4BDB;
+  }
+
+  .ees-home-social-container li:nth-child(3) a:before {
+    background: #dd4b39;
   }
 
   .ees-home-social-container {
@@ -112,6 +179,7 @@
     justify-content: space-around;
     align-items: center;
     min-height: 60px;
+    margin-top: 40px;
   }
 
   .fade-enter-active, .fade-leave-active {
@@ -119,23 +187,5 @@
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
-  }
-
-  .bounce-enter-active {
-    animation: bounce-in 300ms;
-  }
-  .bounce-leave-active {
-    animation: bounce-in 300ms reverse;
-  }
-  @keyframes bounce-in {
-    0% {
-      transform: scale(0);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-    100% {
-      transform: scale(1);
-    }
   }
 </style>

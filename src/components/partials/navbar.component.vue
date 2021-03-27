@@ -58,7 +58,6 @@
     padding: 1.375em;
     text-align: right;
     background: #000;
-    border: 5px solid #000;
     box-shadow:
         0 1px 2px rgba(0,0,0,0.2),
         0 4px 10px rgba(0,0,0,0.15);
@@ -111,7 +110,7 @@
     padding: 0.25em 0;
     margin-bottom: 0;
     transition: all 600ms;
-    color: red;
+    color: #FFF;
   }
 
   .float-nav.closed li {
@@ -123,6 +122,53 @@
   }
 
   .link {
+    color: #fff !important;
+    text-decoration: none;
     margin: 12px;
+  }
+
+  .link:hover {
+    text-decoration: none;
+  }
+
+  .link {
+    position:relative;
+    text-decoration: none;
+    color: gray;
+    transition:color .15s ease-in-out;
+  }
+
+  .link:hover {
+    background-size: 100% 100%;
+    cursor: pointer;
+  }
+
+  .link:after {
+    display:block;
+    content:"";
+    position: absolute;
+    right:0;
+    left:0;
+    width:100%;
+    height:3px;
+    opacity:0;
+    transform:translateY(-150%);
+    transition:transform .200s ease-in-out, opacity .15s ease-in-out;
+    background-color: #FFF;
+  }
+
+  .link.is-active,
+  .link:active,
+  .link:focus,
+  .link:hover {
+    color: #FFF;
+  }
+
+  .link.is-active:after,
+  .link:active:after,
+  .link:focus:after,
+  .link:hover:after {
+    transform:translateY(0);
+    opacity:1;
   }
 </style>
