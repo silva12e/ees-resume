@@ -4,16 +4,16 @@
        v-on:click="toggle()">
     <ul class="navbar-items">
       <li class="navbar-item">
-        <a class="link" href="#">About me</a>
+        <router-link class="link" to="/">Home</router-link>
+      </li>
+      <li class="navbar-item">
+        <router-link class="link" to="/about">About Me</router-link>
       </li>
       <li>
-        <a class="link" href="#">Experience</a>
+        <router-link class="link" to="/experience">Experience</router-link>
       </li>
       <li>
-        <a class="link" href="#">Projects</a>
-      </li>
-      <li>
-        <a class="link" href="#">Contact Information</a>
+        <router-link class="link" to="/contact-information">Contact Information</router-link>
       </li>
     </ul>
     <div class="toggle  open">
@@ -57,7 +57,7 @@
     height: 300px;
     padding: 1.375em;
     text-align: right;
-    background: #000;
+    background: #23a6d5;
     box-shadow:
         0 1px 2px rgba(0,0,0,0.2),
         0 4px 10px rgba(0,0,0,0.15);
@@ -66,7 +66,7 @@
   .float-nav.closed {
     width: 0;
     height: 0;
-    border: 5px solid #fff;
+    border: 5px solid #23a6d5;
     border-radius: 50%;
   }
 
@@ -110,7 +110,7 @@
     padding: 0.25em 0;
     margin-bottom: 0;
     transition: all 600ms;
-    color: #FFF;
+    color: #fff;
   }
 
   .float-nav.closed li {
@@ -118,7 +118,7 @@
   }
 
   .navbar-burger span {
-    color: #FFF;
+    color: #fff;
   }
 
   .link {
@@ -154,7 +154,7 @@
     opacity:0;
     transform:translateY(-150%);
     transition:transform .200s ease-in-out, opacity .15s ease-in-out;
-    background-color: #FFF;
+    background-color: #fff;
   }
 
   .link.is-active,

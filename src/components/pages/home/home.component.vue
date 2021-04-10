@@ -1,16 +1,23 @@
 <template>
   <div class="home">
     <div class="home-container">
+      <background></background>
       <div class="home-title">
         <transition name="fade">
           <h1 v-if="showTitle" class="title ees-home-title">
-            <vue-typer :pre-type-delay='200' :type-delay='70' @completed="onComplete(0)" text='Ernesto Silva' :repeat="0"></vue-typer>
+            <Typer
+                text="Ernesto Silva"
+                @onComplete="onComplete(0)">
+            </Typer>
           </h1>
         </transition>
       </div>
       <div class="home-subtitle">
-        <h2 class="subtitle is-spaced ees-home-subtitle">
-          <vue-typer :pre-type-delay='200' :type-delay='70' v-if="showSubtitle" @completed="onComplete(1)" text='Software Development' :repeat="0"></vue-typer>
+        <h2 v-if="showSubtitle" class="subtitle is-spaced ees-home-subtitle">
+          <Typer
+              text="Full-stack Software developer"
+              @onComplete="onComplete(1)">
+          </Typer>
         </h2>
       </div>
       <div class="home-social">
@@ -29,8 +36,13 @@
 </template>
 
 <script>
-  export default {
+ import Typer from '@/components/shared/typer';
+ import Background from "@/components/shared/background";
+
+ export default {
     name: 'Home',
+    components: { Typer, Background },
+    comments: { Typer },
     data: function() {
       return {
         showTitle: false,
@@ -68,15 +80,29 @@
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss">
   .home {
-    background: #FFF;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(-45deg, #8ccb60, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
   }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0 50%;
+    }
+  }
+
   .home-container {
     min-height: 300px;
   }
@@ -103,10 +129,8 @@
 
   .ees-home-social-container {
     display: flex;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
   }
 
   .icon-link {
@@ -162,15 +186,15 @@
   }
 
   .ees-home-social-container li:nth-child(1) a:before{
-    background: #3b5999;
+    background: #23a6d5;
   }
 
   .ees-home-social-container li:nth-child(2) a:before{
-    background: #BE4BDB;
+    background: #8ccb60;
   }
 
   .ees-home-social-container li:nth-child(3) a:before {
-    background: #dd4b39;
+    background: #ee7752;
   }
 
   .ees-home-social-container {

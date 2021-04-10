@@ -1,51 +1,46 @@
 <template>
   <div id="app">
-    <home @showNavbar="showNavbar = true"
-          @scrollToMain="scrollToMain">
-    </home>
+    <home></home>
+    <about id="#about"></about>
     <transition name="bounce">
       <Navbar v-if="showNavbar"></Navbar>
     </transition>
   </div>
 </template>
 <script>
-  import Navbar from './components/partials/navbar.component';
-  import Home from './components/pages/home/home.component';
-
+  import Navbar from './components/shared/navbar.component';
+  import Home from "@/components/pages/home/home.component";
+  import About from "@/components/pages/about/about.component";
   const DEFAULT_TRANSITION = 'fade';
 
 export default {
   name: 'App',
-  components: { Navbar, Home },
+  components: {About, Home, Navbar },
   data() {
     return {
       prevHeight: 0,
+      showNavbar: false,
       transitionName: DEFAULT_TRANSITION,
-      showNavbar: false
     };
   },
   created() {
     this.$router.beforeEach((to, from, next) => {
       let transitionName = to.meta.transitionName || from.meta.transitionName;
-        if (transitionName === 'slide') {
-          const toDepth = to.path.split('/').length;
-          const fromDepth = from.path.split('/').length;
-          transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+
+      if (transitionName === 'slide') {
+        const toDepth = to.path.split('/').length;
+        const fromDepth = from.path.split('/').length;
+        transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
         }
 
-        this.transitionName = transitionName || DEFAULT_TRANSITION;
-
-        next();
+          this.transitionName = transitionName || DEFAULT_TRANSITION;
+          next();
       });
-    },
+  },
+  mounted() {
+    setTimeout(() => this.showNavbar = true, 3300)
+  },
   methods: {
-    scrollToMain() {
-      const el = this.$el.getElementsByClassName('view')[0];
-
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    },
     beforeLeave(element) {
       this.prevHeight = getComputedStyle(element).height;
     },
@@ -57,14 +52,21 @@ export default {
       setTimeout(() => {
         element.style.height = height;
       });
-    }
+    },
+    afterEnter(element) {
+      element.style.height = 'auto';
+    },
   },
 }
 </script>
-<style>
+<style lang="scss">
+  #app {
+    background: initial;
+  }
+
   .slide-left-enter-active,
   .slide-left-leave-active,
-  .slide-right-enter-active,
+.slide-right-enter-active,
   .slide-right-leave-active {
     transition-duration: 0.5s;
     transition-property: height, opacity, transform;
