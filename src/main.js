@@ -9,7 +9,9 @@ import 'vue-material/dist/theme/default.css';
 import { store } from './store/index';
 import VueTyperPlugin from 'vue-typer';
 import VueEllipseProgress from 'vue-ellipse-progress';
+import VueScrollactive from 'vue-scrollactive';
 
+Vue.use(VueScrollactive);
 Vue.use(VueEllipseProgress);
 Vue.use(VueRouter);
 Vue.use(VueMaterial);
