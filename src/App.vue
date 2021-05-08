@@ -2,6 +2,7 @@
   <div id="app">
     <home></home>
     <about id="#about"></about>
+    <Experience id="#experience"></Experience>
     <Navbar v-if="showNavbar"></Navbar>
   </div>
 </template>
@@ -9,10 +10,11 @@
   import Navbar from './components/shared/navbar.component';
   import Home from "@/components/pages/home/home.component";
   import About from "@/components/pages/about/about.component";
+  import Experience from "./components/pages/experience/experience.component";
 
 export default {
   name: 'App',
-  components: { About, Home, Navbar },
+  components: {Experience, About, Home, Navbar },
   data() {
     return {
       prevHeight: 0,

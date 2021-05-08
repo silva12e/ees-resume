@@ -2,26 +2,20 @@
   <nav v-bind:class="{ 'closed': !isNavbarActive  }"
        class="float-nav"
        v-on:click="toggle()">
-      <scrollactive class="my-nav">
-        <a href="#home" class="scrollactive-item">Home</a>
-        <a href="#about" class="scrollactive-item">About Us</a>
-        <a href="#experience" class="scrollactive-item">Portfolio</a>
-        <a href="#contact" class="scrollactive-item">Contact</a>
-      </scrollactive>
-<!--      <ul class="navbar-items">-->
-<!--        <li class="navbar-item">-->
-<!--          <router-link class="link" to="/">Home</router-link>-->
-<!--        </li>-->
-<!--        <li class="navbar-item">-->
-<!--          <router-link class="link scrollactive-item" to="/about">About Me</router-link>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--          <router-link class="link scrollactive-item" to="/experience">Experience</router-link>-->
-<!--        </li>-->
-<!--        <li>-->
-<!--          <router-link class="link scrollactive-item" to="/contact-information">Contact Information</router-link>-->
-<!--        </li>-->
-<!--      </ul>-->
+      <ul class="navbar-items">
+        <li class="navbar-item">
+          <router-link class="link" to="/">Home</router-link>
+        </li>
+        <li class="navbar-item">
+          <router-link class="link scrollactive-item" to="/about">About Me</router-link>
+        </li>
+        <li>
+          <router-link class="link scrollactive-item" to="/experience">Experience</router-link>
+        </li>
+        <li>
+          <router-link class="link scrollactive-item" to="/contact-information">Contact Information</router-link>
+        </li>
+      </ul>
     <div class="toggle  open">
       <a v-bind:class="{ 'is-active': isNavbarActive }"
          role="button"

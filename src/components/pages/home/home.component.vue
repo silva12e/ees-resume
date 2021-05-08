@@ -7,6 +7,7 @@
           <h1 v-if="showTitle" class="title ees-home-title">
             <Typer
                 text="Ernesto Silva"
+                :repeat="0"
                 @onComplete="onComplete(0)">
             </Typer>
           </h1>
@@ -16,6 +17,7 @@
         <h2 v-if="showSubtitle" class="subtitle is-spaced ees-home-subtitle">
           <Typer
               text="Full-stack Software developer"
+              :repeat="0"
               @onComplete="onComplete(1)">
           </Typer>
         </h2>

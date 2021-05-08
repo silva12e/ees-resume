@@ -5,7 +5,13 @@
         :type-delay='100'
         @completed="onComplete()"
         :text="text"
-        :repeat="0">
+        initial-action='typing'
+        :pre-erase-delay='3000'
+        :erase-delay='200'
+        erase-style='select-all'
+        :erase-on-complete='false'
+        caret-animation='smooth'
+        :repeat="repeat">
     </vue-typer>
   </div>
 </template>
@@ -15,7 +21,15 @@ export default {
   data: function() {
     return {}
   },
-  props: ['text'],
+  props: {
+    text: {
+      type: String
+    },
+    repeat: {
+      type: Number,
+      default: undefined
+    }
+  },
   mounted() {},
   methods: {
     onComplete() {

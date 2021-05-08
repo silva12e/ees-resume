@@ -1,38 +1,30 @@
 <template>
   <div class="about">
-    <div class="about-header">
-      <Header @onComplete="onComplete()" text="About me"></Header>
+    <div class="about__header">
+      <Header
+          @onComplete="onComplete()"
+          text="About me">
+      </Header>
     </div>
-      <div class="about-body">
-        <div class="main">
-          <div class="about-card">
-            <div class="about-card-header">
-              <div class="about-card-header-img">
-                <img class="about-img" src="https://placebeard.it/640x360" alt="">
-              </div>
-              <div class="about-card-header-title">
-                <h2 class="title">Hello there...</h2>
-              </div>
-            </div>
-            <div class="about-text">
-              Find empty spot in cupboard and sleep all day meowing chowing and wowing and find empty spot in cupboard and sleep all day gimme attention gimme attention gimme attention gimme attention gimme attention gimme attention just kidding i don't want it anymore meow bye pelt around the house and up and down stairs chasing phantoms but tweeting a baseball cat mojo . Yowling nonstop the whole night to pet a cat, rub its belly, endure blood and agony, quietly weep, keep rubbing belly push your water glass on the floor. And sometimes switches in french and say "miaou" just because well why not. What the heck just happened, something feels fishy pet me pet me don't pet me. Toy mouse squeak roll over flex claws on the human's belly and purr like a lawnmower sleep everywhere, but not in my bed. Lick human with sandpaper tongue lick the other cats or rub face on everything.
-            </div>
-          </div>
-        </div>
-      </div>
-     <div class="skills">
-       <skills></skills>
-     </div>
+    <div class="about__avatar-container">
+      <img
+          class="about__avatar-container__img"
+          src="https://placebeard.it/640x360"
+          alt="">
+    </div>
+    <div class="about__description">
+      <p>HI! My name is Ernesto Silva and I absolutely love being a Software Developer. I have over 5 years of experience in Client side, API, DEVOPS experience and have been really lucky to have worked on some amazing products.
+        I am always looking for a new challenge to expand my expertise in Software Developer and I cannot wait to hear about your project!</p>
+    </div>
   </div>
 </template>
 
 <script>
   import Header from "@/components/shared/header";
-  import Skills from "@/components/pages/skills/skills.component";
 
   export default {
     name: 'About',
-    components: { Skills, Header },
+    components: { Header },
     data() {
       return {
         currentTab: 0,
@@ -41,9 +33,6 @@
       };
     },
     methods: {
-      switchTab(index) {
-        this.currentTab = index;
-      },
       onComplete() {}
     }
   }
@@ -52,58 +41,34 @@
 <style lang="scss">
   .about {
     display: flex;
-    width: 100vw;
     flex-direction: column;
-    min-height: 100vh;
-  }
-
-  .about-header {
-    margin: 30px;
-  }
-
-  .about-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .about-card {
-    background: #fcfcfc;
-    border-radius: 10px;
     margin: 20px;
-    min-width: 50vw;
-    min-height: 300px;
-    max-width: 300px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  }
 
-  .about-img {
-    width: 250px;
-    border-radius: 10px;
-    position: relative;
-    margin-left: -30px;
-    top: -20px;
-    height: 200px;
-    box-shadow: 10px 10px 10px 1px #888888;
-  }
+    &__header {
+      color: black !important;
+      width: 100%;
+    }
 
-  .about-text {
-    margin: 20px;
-  }
+    &__avatar-container {
+      align-self: center;
+      margin-top: 20px;
 
-  .about-card-header {
-    display: flex;
-  }
+      &__img {
+        border-radius: 5%;
+      }
+    }
 
-  .about-card-header-title {
-    align-self: flex-end;
-  }
+    &__description {
+      align-self: center;
+      margin: 20px;
+    }
 
-  .skills {
-    margin: 20px;
+    .vue-typer .custom.char.typed {
+      color: #000;
+    }
+
+    .vue-typer .custom.char.selected {
+      color: #000;
+    }
   }
 </style>

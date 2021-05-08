@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <h1 class="title">
-      <Typer @onComplete="$emit('onComplete')" text="About me">
+      <Typer @onComplete="$emit('onComplete')" :text='text'>
       </Typer>
     </h1>
   </div>
@@ -16,7 +16,9 @@
       return {}
     },
     props: ['text'],
-    mounted() {},
+    mounted() {
+      console.log(this.text);
+    },
     methods: {}
   }
 </script>
