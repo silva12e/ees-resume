@@ -101,6 +101,7 @@ import Header from "@/components/shared/header";
     padding: 5px 45px;
     display: flex;
     justify-content: center;
+    height: 100vh;
 
     &__list {
       position: relative;

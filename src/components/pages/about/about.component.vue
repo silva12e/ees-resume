@@ -43,6 +43,7 @@
     display: flex;
     flex-direction: column;
     margin: 20px;
+    height: 100vh;
 
     &__header {
       color: black !important;
