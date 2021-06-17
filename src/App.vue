@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" class="has-navbar-fixed-top">
+    <Navbar isNavbarVisible="showNavbar"></Navbar>
     <home></home>
     <about id="#about"></about>
     <Experience id="#experience"></Experience>
     <skills></skills>
-    <Navbar v-if="showNavbar"></Navbar>
   </div>
 </template>
 <script>
@@ -20,12 +20,29 @@ export default {
   data() {
     return {
       prevHeight: 0,
-      showNavbar: true, // Use store
+      showNavbar: false, // Use store
+      offsetTop: 0
     };
   },
-  created() {},
+  created() {
+    window.addEventListener('scroll', this.onScroll);
+  },
   mounted() {},
-  methods: {},
+  methods: {
+    onScroll() {
+      this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
+      console.log(document.querySelector('.ees-about').clientTop)
+
+      if (this.offsetTop >= document.querySelector('.ees-about')) {
+        this.fadeNavbar(true)
+      } else {
+        this.fadeNavbar(false)
+      }
+    },
+    fadeNavbar(showNavbar) {
+      this.showNavbar = showNavbar;
+    }
+  },
 }
 </script>
 <style lang="scss">

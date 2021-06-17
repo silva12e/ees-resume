@@ -1,181 +1,129 @@
 <template>
-  <nav v-bind:class="{ 'closed': !isNavbarActive  }"
-       class="float-nav"
-       v-on:click="toggle()">
-      <ul class="navbar-items">
-        <li class="navbar-item">
-          <router-link class="link" to="/">Home</router-link>
-        </li>
-        <li class="navbar-item">
-          <router-link class="link scrollactive-item" to="/about">About Me</router-link>
-        </li>
-        <li>
-          <router-link class="link scrollactive-item" to="/experience">Experience</router-link>
-        </li>
-        <li>
-          <router-link class="link scrollactive-item" to="/contact-information">Contact Information</router-link>
-        </li>
-      </ul>
-    <div class="toggle  open">
-      <a v-bind:class="{ 'is-active': isNavbarActive }"
-         role="button"
-         class="navbar-burger"
-         aria-label="menu"
-         aria-expanded="false">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-  </nav>
+  <div class="ees-navbar">
+    <nav v-if="isNavbarVisible" class="navbar is-fixed-top is-transparent" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item ees-logo" href="#">
+          Ernesto Silva
+        </a>
+
+        <a role="button"
+          v-on:click="toggleMenu"
+          v-bind:class="{ 'is-active': isNavbarActive }"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="eesNavbarTarget">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div
+          id="eesNavbarTarget"
+          v-bind:class="{ 'is-active': isNavbarActive }"
+          class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item">
+            Home
+          </a>
+
+          <a class="navbar-item">
+            About
+          </a>
+
+          <a class="navbar-item">
+            Projects
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
 </template>
 <script>
   export default {
+    props: ['isNavbarVisible'],
     name: 'Navbar',
     data: function() {
       return {
-        isNavbarActive: false
+        isNavbarActive: false,
       }
     },
     methods: {
-      toggle() {
+      toggleMenu() {
         this.isNavbarActive = !this.isNavbarActive;
-      },
-      scrollToElement() {
-        const el = this.$refs.queryElem;
-
-        if (el) {
-          el.scrollIntoView({behavior: 'smooth'});
-        }
       }
     },
     mounted() {}
   }
 </script>
-<style scoped>
-  .float-nav {
-    border-radius: 20px;
-    position: fixed;
-    z-index: 1;
-    bottom: 1.375em;
-    right: 1.375em;
-    overflow: hidden;
-    width: 300px;
-    height: 300px;
-    padding: 1.375em;
-    text-align: right;
-    background: #23a6d5;
-    box-shadow:
-        0 1px 2px rgba(0,0,0,0.2),
-        0 4px 10px rgba(0,0,0,0.15);
-    transition: all 300ms cubic-bezier(.6,-0.3,.3,1.3);
-  }
-  .float-nav.closed {
-    width: 0;
-    height: 0;
-    border: 5px solid #23a6d5;
-    border-radius: 50%;
+<style lang="scss" scoped>
+.ees-navbar {
+  .navbar {
+    background: transparent;
   }
 
-  .float-nav a {
-    display: inline-block;
-    color: #fff;
+  .navbar-item {
+    transition:all 300ms ease-out;
+
+    &::after{
+      content:"";
+      height:0;
+      width:100%;
+      background-color:#fefefe;
+      display: block;
+      position: absolute;
+      z-index:-1;
+      bottom:0;
+      left:0;
+      transition:all 300ms ease;
+    }
+
+    &:hover::after {
+      height: 100%;
+    }
   }
 
-  .float-nav > a {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-  }
-
-  .float-nav .toggle {
-    position: absolute;
-    bottom: 6px;
-    right: 6px;
-    width: 1.375em;
-    height: 1.375em;
-    font-size: 200%;
-    line-height: 1.375em;
-    font-weight: 300;
-    text-align: center;
-    transition: all 300ms;
-  }
-
-  .float-nav ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    opacity: 1;
-    transition: all 300ms;
-  }
-
-  .float-nav.closed ul {
-    opacity: 0;
-  }
-
-  .float-nav li {
-    padding: 0.25em 0;
-    margin-bottom: 0;
-    transition: all 600ms;
-    color: #fff;
-  }
-
-  .float-nav.closed li {
-    margin-bottom: 1.375em;
-  }
-
-  .navbar-burger span {
-    color: #fff;
-  }
-
-  .link {
-    color: #fff !important;
+  .navbar-burger,
+  .navbar-item {
     text-decoration: none;
-    margin: 12px;
+    color: white;
+    text-transform: uppercase;
+    &:hover {
+      color: inherit;
+    }
   }
 
-  .link:hover {
-    text-decoration: none;
+  @media only screen and (max-width: 1023px) {
+    .navbar-menu {
+      animation: navAnimOpen .2s ease-in-out;
+    }
+
+    .navbar-burger,
+    .navbar-item {
+      display: flex;
+      color: black;
+      &::after{
+        content:"";
+        height:0;
+        width:0;
+      }
+
+      .ees-logo {
+        color: #FFFFFF;
+      }
+    }
   }
 
-  .link {
-    position:relative;
-    text-decoration: none;
-    color: gray;
-    transition:color .15s ease-in-out;
+  @keyframes navAnimOpen {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
   }
-
-  .link:hover {
-    background-size: 100% 100%;
-    cursor: pointer;
-  }
-
-  .link:after {
-    display:block;
-    content:"";
-    position: absolute;
-    right:0;
-    left:0;
-    width:100%;
-    height:3px;
-    opacity:0;
-    transform:translateY(-150%);
-    transition:transform .200s ease-in-out, opacity .15s ease-in-out;
-    background-color: #fff;
-  }
-
-  .link.is-active,
-  .link:active,
-  .link:focus,
-  .link:hover {
-    color: #FFF;
-  }
-
-  .link.is-active:after,
-  .link:active:after,
-  .link:focus:after,
-  .link:hover:after {
-    transform:translateY(0);
-    opacity:1;
-  }
+}
 </style>

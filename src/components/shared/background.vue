@@ -1,17 +1,17 @@
 <template>
   <div class="background-container" >
-    <ul class="background-circles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
+<!--    <ul class="background-circles">-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--      <li></li>-->
+<!--    </ul>-->
   </div >
 </template>
 

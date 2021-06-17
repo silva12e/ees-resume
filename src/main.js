@@ -3,19 +3,17 @@ import App from './App.vue';
 import VueRouter from 'vue-router';
 
 import './../node_modules/bulma/css/bulma.css';
-import VueMaterial from 'vue-material';
-import 'vue-material/dist/vue-material.min.css';
-import 'vue-material/dist/theme/default.css';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 import { store } from './store/index';
 import VueTyperPlugin from 'vue-typer';
-import VueEllipseProgress from 'vue-ellipse-progress';
-import VueScrollactive from 'vue-scrollactive';
 
-Vue.use(VueScrollactive);
-Vue.use(VueEllipseProgress);
 Vue.use(VueRouter);
-Vue.use(VueMaterial);
 Vue.use(VueTyperPlugin);
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
 // Components
 import About from './components/pages/about/about.component';
